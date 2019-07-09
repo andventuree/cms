@@ -15,20 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', function () {
-    return 'This is the about page';
-});
+// Route::get('/about', function () {
+//     return 'This is the about page';
+// });
 
-Route::get('/example/{parameter}', function ($parameter) {
+// Route::get('/example/{parameter}', function ($parameter) {
 
-    return "This is the path /example/" . $parameter;
-});
+//     return "This is the path /example/" . $parameter;
+// });
 
-Route::get('/admin/post/example', array('as' => "admin.home", function () {
-    //route() is a a global variable in laravel
-    $url = route('admin.home'); # nickname or alias for the route
-    // Can be used in our templates, for example: 
-        //<a href={admin.home}>Admin Panel</a>
-    return "this url is ". $url; 
-    //remember that the . is string concatenation
-}));
+// Route::get('/admin/post/example', array('as' => "admin.home", function () {
+//     //route() is a a global variable in laravel
+//     $url = route('admin.home'); # nickname or alias for the route
+//     // Can be used in our templates, for example: 
+//         //<a href={admin.home}>Admin Panel</a>
+//     return "this url is ". $url; 
+//     //remember that the . is string concatenation
+// }));
+
+//It'll look into this controller and index method
+// Route::get('/post/{someParameter}', 'PostsController@index'); 
+
+Route::resource('posts', 'PostsController');
