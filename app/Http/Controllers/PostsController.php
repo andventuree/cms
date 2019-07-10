@@ -87,7 +87,9 @@ class PostsController extends Controller
 
     // GET cms.test/contact
     public function contact() {
-        return view('contact');
+        $people = ['Edwin', 'Jose', 'James', 'Peter', 'Maria'];
+
+        return view('contact', compact('people'));
     }
 
     // GET cms.test/post/1
