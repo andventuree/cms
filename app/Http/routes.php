@@ -36,6 +36,8 @@ Route::get('/', function () {
 //It'll look into this controller and index method
 // Route::get('/post/{someParameter}', 'PostsController@index'); 
 
-Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostsController'); //::resource quickly makes CRUD routes
 
 Route::get('/contact', 'PostsController@contact');
+
+Route::get('/post/{id}/{name}', 'PostsController@show_post');

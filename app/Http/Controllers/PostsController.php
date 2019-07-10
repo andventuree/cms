@@ -85,7 +85,20 @@ class PostsController extends Controller
         //
     }
 
+    // GET cms.test/contact
     public function contact() {
         return view('contact');
+    }
+
+    // GET cms.test/post/1
+    public function show_post($id, $name) {
+        //view global fn will auto search for any files with this name in views folder
+        
+        //Passing parameters
+        // a) ->with is using chaining to passing args
+        // return view('post')->with('id', $id);
+
+        // b) compact(), any strings you pass into this fn will know to reference to variables from scope
+        return view('post', compact('id', 'name'));
     }
 }
