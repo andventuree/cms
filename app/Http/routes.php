@@ -41,3 +41,5 @@ Route::resource('posts', 'PostsController'); //::resource quickly makes CRUD rou
 Route::get('/contact', 'PostsController@contact');
 
 Route::get('/post/{id}/{name}', 'PostsController@show_post');
+
+Route::get('/admin/{name}', 'PostsController@show_admin');

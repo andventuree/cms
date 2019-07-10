@@ -101,4 +101,8 @@ class PostsController extends Controller
         // b) compact(), any strings you pass into this fn will know to reference to variables from scope
         return view('post', compact('id', 'name'));
     }
+
+    public function show_admin($name) {
+        return view('admin', compact('name'));
+    }
 }

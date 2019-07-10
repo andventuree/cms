@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Post {{$id}} with {{$name}}</h1>
+  <h1>Admin Page Homies!</h1>
 
-@stop
+@endSection
