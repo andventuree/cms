@@ -8,7 +8,7 @@
 
 Route::get('/insert', function() {
     //DB class
-    DB::insert('insert into post(title, content) value(?, ?)', ['PHP with Laravel', 'Laravel is the best to happen to PHP']);
+    DB::insert('insert into posts(title, content) value(?, ?)', ['PHP with Laravel', 'Laravel is the best to happen to PHP']);
 });
 
 Route::get('/read', function() {
@@ -22,17 +22,21 @@ Route::get('/read', function() {
     // }
 });
 
-Route::get('/update', function () {
-    // DB::update('') //returns the affected row that was updated 
-    $affectedRow = DB::update('update posts set title = "Update title" where id = ?', [1]);
-    return $affectedRow;
-});
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/delete', function() {
-    $deleted = DB::delete('delete from posts where id = ?', [1]);
-    return $deleted;
-});
+Route::get('/find', function() {
+    // $posts = App\Post; // By default, refering to this namespace
+    
+    $posts = Post::all();
+    foreach($post as $post) {
+        return $post->title;
+    }
 
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +81,4 @@ Route::get('/contact', 'PostsController@contact');
 Route::get('/post/{id}/{name}', 'PostsController@show_post');
 
 Route::get('/admin/{name}', 'PostsController@show_admin');
+
