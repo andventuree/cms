@@ -20,4 +20,8 @@ class Post extends Model
     ];
 
     protected $dates = ['deleted_at']; //this is already set in the model but this line just brings it up
+
+    public function user(){
+        return $this->belongsTo("App\User"); //inverse to hasOne on User model
+    }
 }

@@ -38,6 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
+                <p>Check out routes at Http/Requests/routes.php</p>
                 <div class="title">Laravel 5</div>
             </div>
         </div>

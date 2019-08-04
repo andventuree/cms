@@ -1,12 +1,65 @@
 <?php
 
 use App\Post;
+use App\User;
+use App\Role;
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT Relationships
+|--------------------------------------------------------------------------
+*/
+
+// One to One Relationship
+Route::get('/user/{id}/post', function($id) {
+    return User::find($id)->post; //In the user model, ->post is calling the post method
+});
+
+Route::get('/post/{id}/user', function($id) {
+    return Post::find($id)->user->name;
+});
+
+// One to Many Relationship
+Route::get('/posts', function() {
+    $user = User::find(1); //This finds the user record
+
+    //If we use the posts method, it'll use the hasMany association to get all the associated records
+    foreach($user->posts as $post) { 
+        echo $post->title . "<br>";
+    };
+});
+
+// Many to Many Relationship
+Route::get('/user/{id}/role', function($id) {
+    $user = User::find($id);
+    // return $user;
+    foreach($user->roles as $role) {
+        return $role->name;
+    }
+});
 
 /*
 |--------------------------------------------------------------------------
 | ELOQUENT ORM
 |--------------------------------------------------------------------------
 */
+
+Route::get('/roles/insert', function() {
+    Role::create(['id'=>1, 'name'=>'administrator']);
+    Role::create(['id'=>2, 'name'=>'subscriber']);
+});
+
+Route::get('/user/create', function() { 
+    // $user = new User;
+    // $user->name = 'andrew'; 
+    // $user->email = 'abc123@gmail.com'; 
+    // $user->password = 'booger';
+
+    //We can also mass assign since we already have the $fillable field in the model
+    User::create(['name'=>'andrew', 'email'=>'abc123@gmail.com', 'password'=>'booger']);
+    User::create(['name'=>'billy', 'email'=>'123foobar@gmail.com', 'password'=>'bar']);
+});
+
 
 Route::get('/find', function() {
     // $posts = App\Post; // same as use App\Post; above which will import this class
@@ -178,11 +231,11 @@ Route::get('/', function () {
 //It'll look into this controller and index method
 // Route::get('/post/{someParameter}', 'PostsController@index'); 
 
-Route::resource('posts', 'PostsController'); //::resource quickly makes CRUD routes
+// Route::resource('posts', 'PostsController'); //::resource quickly makes CRUD routes
 
-Route::get('/contact', 'PostsController@contact');
+// Route::get('/contact', 'PostsController@contact');
 
-Route::get('/post/{id}/{name}', 'PostsController@show_post');
+// Route::get('/post/{id}/{name}', 'PostsController@show_post');
 
-Route::get('/admin/{name}', 'PostsController@show_admin');
+// Route::get('/admin/{name}', 'PostsController@show_admin');
 
