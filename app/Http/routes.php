@@ -2,6 +2,40 @@
 
 /*
 |--------------------------------------------------------------------------
+| Database Raw SQL Queries
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/insert', function() {
+    //DB class
+    DB::insert('insert into post(title, content) value(?, ?)', ['PHP with Laravel', 'Laravel is the best to happen to PHP']);
+});
+
+Route::get('/read', function() {
+    $results = DB::select('select * from posts where id = ?', [1]);
+    // 'select * from posts where id = ?',  //SQL query
+    // [1] //this value is binded to id = ?
+
+    return $results;
+    // foreach($results as $post) {
+    //     return $post->title;
+    // }
+});
+
+Route::get('/update', function () {
+    // DB::update('') //returns the affected row that was updated 
+    $affectedRow = DB::update('update posts set title = "Update title" where id = ?', [1]);
+    return $affectedRow;
+});
+
+Route::get('/delete', function() {
+    $deleted = DB::delete('delete from posts where id = ?', [1]);
+    return $deleted;
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
